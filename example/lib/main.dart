@@ -71,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   void initState() {
-    _controller = TextEditingController(
-        text:
-            "https://www.bilibili.com/video/BV1F64y1c7hd?spm_id_from=333.851.b_7265706f7274466972737431.12");
+    _controller = TextEditingController(text: "https://pub.dev/packages/slidy");
     super.initState();
   }
 

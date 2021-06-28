@@ -301,7 +301,7 @@ class WebAnalyzer {
   static String? _getMetaContent(
       Document document, String property, String propertyValue) {
     final meta = document.head?.getElementsByTagName("meta");
-    final ele = meta?.firstWhere(
+    final ele = meta?.firstWhereOrNull(
       (e) => e.attributes[property] == propertyValue,
     );
     if (ele != null) return ele.attributes["content"]?.trim();
@@ -343,7 +343,7 @@ class WebAnalyzer {
     final meta = document.head?.getElementsByTagName("link");
     String? icon = "";
     // get icon first
-    var metaIcon = meta?.firstWhere(
+    var metaIcon = meta?.firstWhereOrNull(
       (e) {
         final rel = (e.attributes["rel"] ?? "").toLowerCase();
         if (rel == "icon") {
@@ -356,7 +356,7 @@ class WebAnalyzer {
       },
     );
 
-    metaIcon ??= meta?.firstWhere(
+    metaIcon ??= meta?.firstWhereOrNull(
       (e) {
         final rel = (e.attributes["rel"] ?? "").toLowerCase();
         if (rel == "shortcut icon") {
@@ -396,5 +396,14 @@ class WebAnalyzer {
       }
     }
     return source ?? "";
+  }
+}
+
+extension FirstWhereOrNullExtension<E> on Iterable<E> {
+  E? firstWhereOrNull(bool Function(E) test) {
+    for (E element in this) {
+      if (test(element)) return element;
+    }
+    return null;
   }
 }

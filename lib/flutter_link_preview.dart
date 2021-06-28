@@ -78,7 +78,7 @@ class _FlutterLinkPreviewState extends State<FlutterLinkPreview> {
   @override
   Widget build(BuildContext context) {
     if (widget.builder != null) {
-      return widget.builder!(_info!);
+      return widget.builder!(_info ?? WebInfo());
     }
 
     if (_info == null) return const SizedBox();
