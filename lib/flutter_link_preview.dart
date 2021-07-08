@@ -62,7 +62,7 @@ class _FlutterLinkPreviewState extends State<FlutterLinkPreview> {
   }
 
   Future<void> _getInfo() async {
-    if (_url.startsWith("http")) {
+    if (_url.startsWith("http") || _url.startsWith("www")) {
       _info = await WebAnalyzer.getInfo(
         _url,
         cache: widget.cache,
